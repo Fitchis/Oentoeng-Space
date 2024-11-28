@@ -32,7 +32,9 @@ Route::get('/api/bookings', [BookingController::class, 'getBookingsByDate']);
 Route::get('/', function () {
     // Ambil data lapangan (satu lapangan)
     $field = App\Models\Field::first();  // Mengambil lapangan pertama, karena hanya ada satu
-
+    if (!$field) {
+        return view('welcome', ['field' => null, 'bookingsToday' => collect()]);
+    }
     // Ambil jadwal booking untuk hari ini
     $bookingsToday = App\Models\Booking::where('field_id', $field->id)
         ->whereDate('date', today()) // Menampilkan booking hari ini saja

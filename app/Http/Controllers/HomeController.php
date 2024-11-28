@@ -33,7 +33,7 @@ class HomeController extends Controller
             'user_id' => $request->user_id,
             'date' => $request->date,
             'time' => $request->time,
-            'status' => 'pending', // status awal bisa diatur sesuai kebutuhan
+            'status' => 'pending',
         ]);
 
         return redirect()->back()->with('success', 'Booking berhasil ditambahkan!');
@@ -48,25 +48,5 @@ class HomeController extends Controller
         $booking->update(['status' => $request->status]);
 
         return redirect()->back()->with('success', 'Status booking berhasil diperbarui!');
-    }
-
-    public function storeField(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'price' => 'required|numeric',
-            'description' => 'nullable',
-        ]);
-
-        Field::create($request->all());
-
-        return redirect()->back()->with('success', 'Lapangan berhasil ditambahkan!');
-    }
-
-    public function deleteField(Field $field)
-    {
-        $field->delete();
-
-        return redirect()->back()->with('success', 'Lapangan berhasil dihapus!');
     }
 }

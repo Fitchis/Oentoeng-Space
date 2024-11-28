@@ -11,11 +11,10 @@ class UserController extends Controller
     {
 
         $bookings = Booking::where('user_id', Auth::id())->get();
-        $hour = now()->format('H');
-        $greeting = $hour < 12 ? 'Good Morning' : ($hour < 18 ? 'Good Afternoon' : 'Good Evening');
 
 
 
-        return view('user.dashboard', compact('bookings', 'hour', 'greeting'));
+
+        return view('user.dashboard', compact('bookings'));
     }
 }

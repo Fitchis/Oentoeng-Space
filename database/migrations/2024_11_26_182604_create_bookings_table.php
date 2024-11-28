@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreignId('field_id')->constrained()->onDelete('cascade');
             $table->date('date');
             $table->time('time');
-            $table->string('status')->default('pending'); // pending, confirmed, canceled
+            $table->string('status')->default('pending');
+            $table->string('nama_tim');
             $table->timestamps();
         });
     }

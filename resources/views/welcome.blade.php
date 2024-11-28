@@ -3,7 +3,7 @@
 
 
         <section
-            class="bg-gradient-to-r from-gray-600 to-gray-800 text-white py-6 mb-10 rounded-xl relative overflow-hidden">
+            class="bg-gradient-to-r from-gray-600 to-gray-800 text-white py-2 mb-10 rounded-xl relative overflow-hidden">
             <!-- Animasi partikel dekoratif -->
             <div class="absolute inset-0 -z-10">
                 <div class="w-3 h-3 bg-yellow-400 rounded-full opacity-80 animate-bounce absolute top-10 left-10"></div>
@@ -12,39 +12,10 @@
             </div>
 
             <div class="container mx-auto text-center relative">
-                @php
-                    $hour = now()->hour;
-                    $greeting = $hour < 12 ? 'Good Morning' : ($hour < 18 ? 'Good Afternoon' : 'Good Evening');
-                @endphp
-
-                <!-- Teks Salam -->
-                <h1 class="text-4xl font-bold mb-6 animate__animated animate__fadeInDown">
-                    {{ $greeting }}, {{ Auth::user()->name ?? 'Guest' }}!
-                </h1>
-
                 <!-- Teks Selamat Datang -->
                 <h2 class="text-5xl font-extrabold mb-6 animate__animated animate__zoomIn animate__delay-1s">
                     Selamat Datang di <span class="text-yellow-400">Oentoeng Space</span>
                 </h2>
-
-                <!-- Teks Promo -->
-                <h3
-                    class="text-5xl font-extrabold mb-6 text-gray-200 hover:text-yellow-300 transition duration-300 transform hover:scale-105 animate__animated animate__bounceIn animate__delay-2s">
-                    Promo Spesial!
-                </h3>
-
-                <!-- Deskripsi Promo -->
-                <p class="text-xl mb-8 animate__animated animate__fadeInUp animate__delay-3s">
-                    Nikmati diskon <span class="font-bold text-yellow-300">20%</span> untuk setiap pemesanan lapangan di
-                    bulan ini!
-                </p>
-
-                <!-- Tombol CTA -->
-                {{-- <a href="#promo-details"
-                    class="inline-block px-8 py-3 bg-yellow-500 text-gray-900 font-semibold rounded-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-110 shadow-lg animate__animated animate__pulse animate__infinite">
-                    Lihat Promo
-                </a> --}}
-            </div>
         </section>
 
 
@@ -105,12 +76,7 @@
                 </table>
             </div>
 
-            <!-- Cek apakah ada booking untuk hari ini -->
-            @if ($bookingsToday->isEmpty())
-                <div class="mt-4 p-4 border-4 border-dashed border-yellow-500 rounded-lg text-center">
-                    <p class="text-lg text-yellow-500">Tidak ada booking untuk hari ini.</p>
-                </div>
-            @endif
+
         </div>
         <!-- Tabel Waktu 07:00 - 23:00 -->
         <div class="mb-8">
@@ -121,14 +87,19 @@
                     <thead
                         class="bg-gradient-to-r from-gray-600 to-gray-800 text-white dark:from-gray-900 dark:to-gray-700">
                         <tr>
+                            <th class="px-6 py-4 text-center text-lg font-medium uppercase">Hari</th>
                             <th class="p-4 text-center font-semibold text-lg tracking-wide uppercase">Waktu</th>
                             <th class="p-4 text-center font-semibold text-lg tracking-wide uppercase">Status</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         @for ($hour = 7; $hour <= 23; $hour++)
                             <tr
                                 class="hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-300 ease-in-out transform hover:scale-105">
+                                {{-- <td class="px-6 py-4 text-center text-lg font-medium text-gray-800 dark:text-gray-100">
+                                    {{ \Carbon\Carbon::parse($booking->date)->format('l') }}
+                                </td> --}}
                                 <td
                                     class="p-4 text-gray-800 dark:text-gray-200 text-center font-medium border-b border-gray-300 dark:border-gray-600">
                                     {{ str_pad($hour, 2, '0', STR_PAD_LEFT) }}:00
